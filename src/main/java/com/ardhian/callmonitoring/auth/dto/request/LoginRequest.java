@@ -1,4 +1,4 @@
-package com.ardhian.callmonitoring.dto.request;
+package com.ardhian.callmonitoring.auth.dto.request;
 
 public class LoginRequest {
 

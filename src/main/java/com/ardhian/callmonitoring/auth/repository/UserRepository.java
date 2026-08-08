@@ -1,6 +1,6 @@
-package com.ardhian.callmonitoring.repository;
+package com.ardhian.callmonitoring.auth.repository;
 
-import com.ardhian.callmonitoring.entity.User;
+import com.ardhian.callmonitoring.auth.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

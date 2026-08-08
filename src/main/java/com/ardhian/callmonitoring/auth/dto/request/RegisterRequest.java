@@ -1,7 +1,9 @@
-package com.ardhian.callmonitoring.dto.request;
+package com.ardhian.callmonitoring.auth.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// JSON body for register.
+// Java uses camelCase (fullName), JSON uses snake_case (full_name) via @JsonProperty
 public class RegisterRequest {
 
     private String username;

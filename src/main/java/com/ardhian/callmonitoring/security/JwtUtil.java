@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 // HELPER CREATE & READ JWT TOKEN
+// (like jsonwebtoken package in Node: jwt.sign / jwt.verify)
 @Component
 public class JwtUtil {
 

@@ -1,7 +1,7 @@
 package com.ardhian.callmonitoring.security;
 
-import com.ardhian.callmonitoring.entity.User;
-import com.ardhian.callmonitoring.repository.UserRepository;
+import com.ardhian.callmonitoring.auth.entity.User;
+import com.ardhian.callmonitoring.auth.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 // RUNS FOR EVERY REQUEST, CHECK AUTH HEADER
+// (like Express middleware: app.use(authMiddleware))
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -37,12 +38,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader("Authorization");
 
+        // no token -> continue (SecurityConfig will block protected routes)
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // REMOVE "Bearer"
+        // REMOVE "Bearer "
         String token = authHeader.substring(7);
 
         if (jwtUtil.isTokenValid(token)) {
@@ -52,6 +54,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             if (userOptional.isPresent()) {
                 User user = userOptional.get();
 
+                // mark this request as authenticated
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(
                                 user.getUsername(),
@@ -63,6 +66,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         }
 
+        // next()
         filterChain.doFilter(request, response);
     }
 }

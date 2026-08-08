@@ -1,11 +1,11 @@
-package com.ardhian.callmonitoring.service;
+package com.ardhian.callmonitoring.auth.service;
 
-import com.ardhian.callmonitoring.dto.request.LoginRequest;
-import com.ardhian.callmonitoring.dto.request.RegisterRequest;
-import com.ardhian.callmonitoring.dto.response.LoginResponse;
-import com.ardhian.callmonitoring.dto.response.RegisterResponse;
-import com.ardhian.callmonitoring.entity.User;
-import com.ardhian.callmonitoring.repository.UserRepository;
+import com.ardhian.callmonitoring.auth.dto.request.LoginRequest;
+import com.ardhian.callmonitoring.auth.dto.request.RegisterRequest;
+import com.ardhian.callmonitoring.auth.dto.response.LoginResponse;
+import com.ardhian.callmonitoring.auth.dto.response.RegisterResponse;
+import com.ardhian.callmonitoring.auth.entity.User;
+import com.ardhian.callmonitoring.auth.repository.UserRepository;
 import com.ardhian.callmonitoring.security.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
+// @Service = business logic layer (like a service class in NestJS / Express)
 @Service
 public class AuthService {
 
@@ -57,8 +58,10 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already exists");
         }
 
+        // new User() + setters = like const user = { username, password, ... }
         User user = new User();
         user.setUsername(request.getUsername().trim());
+        // HASH PASSWORD (bcrypt) — never store plain password
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setFullName(request.getFullName().trim());
         user.setEmail(request.getEmail().trim().toLowerCase());
@@ -77,6 +80,7 @@ public class AuthService {
     }
 
     public LoginResponse login(LoginRequest request) {
+        // Optional = value may be empty (like user | undefined)
         Optional<User> userOptional = userRepository.findByUsername(request.getUsername());
 
         if (userOptional.isEmpty()) {

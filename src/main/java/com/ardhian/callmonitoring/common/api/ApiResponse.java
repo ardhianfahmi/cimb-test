@@ -1,5 +1,7 @@
-package com.ardhian.callmonitoring.dto;
+package com.ardhian.callmonitoring.common.api;
 
+// Standard API envelope for every response: { status, message, data }
+// <T> = generic type (like ApiResponse<LoginResponse> in TypeScript)
 public class ApiResponse<T> {
 
     private int status;

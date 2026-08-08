@@ -1,4 +1,4 @@
-package com.ardhian.callmonitoring.entity;
+package com.ardhian.callmonitoring.auth.entity;
 
 import jakarta.persistence.*;
 

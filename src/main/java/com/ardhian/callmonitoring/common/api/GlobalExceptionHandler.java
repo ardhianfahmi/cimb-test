@@ -1,6 +1,5 @@
-package com.ardhian.callmonitoring.controller;
+package com.ardhian.callmonitoring.common.api;
 
-import com.ardhian.callmonitoring.dto.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -8,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
 // catch errors and return same format: status, message, data
+// (like Express error middleware: app.use((err, req, res, next) => ...))
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

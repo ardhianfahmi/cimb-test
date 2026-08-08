@@ -1,28 +1,39 @@
-package com.ardhian.callmonitoring.dto.response;
+package com.ardhian.callmonitoring.auth.dto.response;
 
-public class RegisterResponse {
+public class LoginResponse {
 
+    private String token;
     private String username;
     private String fullName;
     private String email;
     private String phoneNumber;
     private String role;
 
-    public RegisterResponse() {
+    public LoginResponse() {
     }
 
-    public RegisterResponse(
+    public LoginResponse(
+            String token,
             String username,
             String fullName,
             String email,
             String phoneNumber,
             String role
     ) {
+        this.token = token;
         this.username = username;
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.role = role;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getUsername() {

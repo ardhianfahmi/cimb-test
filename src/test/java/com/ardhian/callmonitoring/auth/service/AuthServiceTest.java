@@ -1,9 +1,9 @@
-package com.ardhian.callmonitoring.service;
+package com.ardhian.callmonitoring.auth.service;
 
-import com.ardhian.callmonitoring.dto.request.LoginRequest;
-import com.ardhian.callmonitoring.dto.response.LoginResponse;
-import com.ardhian.callmonitoring.entity.User;
-import com.ardhian.callmonitoring.repository.UserRepository;
+import com.ardhian.callmonitoring.auth.dto.request.LoginRequest;
+import com.ardhian.callmonitoring.auth.dto.response.LoginResponse;
+import com.ardhian.callmonitoring.auth.entity.User;
+import com.ardhian.callmonitoring.auth.repository.UserRepository;
 import com.ardhian.callmonitoring.security.JwtUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,11 +1,12 @@
 package com.ardhian.callmonitoring.config;
 
-import com.ardhian.callmonitoring.entity.User;
-import com.ardhian.callmonitoring.repository.UserRepository;
+import com.ardhian.callmonitoring.auth.entity.User;
+import com.ardhian.callmonitoring.auth.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+// runs once when app starts (like a seed script after server.listen)
 @Component
 public class DataSeeder implements CommandLineRunner {
 

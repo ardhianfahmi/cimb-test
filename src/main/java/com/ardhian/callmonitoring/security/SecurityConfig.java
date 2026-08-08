@@ -1,6 +1,5 @@
-package com.ardhian.callmonitoring.config;
+package com.ardhian.callmonitoring.security;
 
-import com.ardhian.callmonitoring.security.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,6 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 // Security settings for the whole app
+// (like Express middleware: cors + jwt guard + public routes)
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -41,9 +41,11 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(auth -> auth
+                        // public routes (no token)
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
+                        // everything else needs JWT
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
