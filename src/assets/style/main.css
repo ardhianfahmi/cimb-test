@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: corporate --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "corporate";
+  default: true;
+  --color-primary: #3b82f6;
+  --color-primary-content: #ffffff;
+}
+
+body {
+  min-height: 100vh;
+}
