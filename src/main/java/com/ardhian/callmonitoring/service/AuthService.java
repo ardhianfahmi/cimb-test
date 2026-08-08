@@ -1,8 +1,9 @@
 package com.ardhian.callmonitoring.service;
 
-import com.ardhian.callmonitoring.dto.LoginRequest;
-import com.ardhian.callmonitoring.dto.LoginResponse;
-import com.ardhian.callmonitoring.dto.RegisterRequest;
+import com.ardhian.callmonitoring.dto.request.LoginRequest;
+import com.ardhian.callmonitoring.dto.request.RegisterRequest;
+import com.ardhian.callmonitoring.dto.response.LoginResponse;
+import com.ardhian.callmonitoring.dto.response.RegisterResponse;
 import com.ardhian.callmonitoring.entity.User;
 import com.ardhian.callmonitoring.repository.UserRepository;
 import com.ardhian.callmonitoring.security.JwtUtil;
@@ -31,7 +32,7 @@ public class AuthService {
     }
 
     // register only creates account, user must login after this
-    public void register(RegisterRequest request) {
+    public RegisterResponse register(RegisterRequest request) {
         if (request.getUsername() == null || request.getUsername().isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is required");
         }
@@ -64,7 +65,15 @@ public class AuthService {
         user.setPhoneNumber(request.getPhoneNumber().trim());
         user.setRole("SUPERVISOR");
 
-        userRepository.save(user);
+        User saved = userRepository.save(user);
+
+        return new RegisterResponse(
+                saved.getUsername(),
+                saved.getFullName(),
+                saved.getEmail(),
+                saved.getPhoneNumber(),
+                saved.getRole()
+        );
     }
 
     public LoginResponse login(LoginRequest request) {

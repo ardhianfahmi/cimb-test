@@ -1,6 +1,6 @@
 package com.ardhian.callmonitoring.service;
 
-import com.ardhian.callmonitoring.dto.CallRecordResponse;
+import com.ardhian.callmonitoring.dto.response.CallRecordResponse;
 import com.ardhian.callmonitoring.entity.CallRecord;
 import com.ardhian.callmonitoring.repository.CallRecordRepository;
 import com.ardhian.callmonitoring.repository.CallRecordSpecification;

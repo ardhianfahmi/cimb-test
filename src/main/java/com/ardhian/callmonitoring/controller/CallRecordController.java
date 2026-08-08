@@ -1,7 +1,7 @@
 package com.ardhian.callmonitoring.controller;
 
 import com.ardhian.callmonitoring.dto.ApiResponse;
-import com.ardhian.callmonitoring.dto.CallRecordResponse;
+import com.ardhian.callmonitoring.dto.response.CallRecordResponse;
 import com.ardhian.callmonitoring.service.CallRecordService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

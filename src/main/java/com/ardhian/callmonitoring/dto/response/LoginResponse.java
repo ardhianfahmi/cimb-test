@@ -1,4 +1,4 @@
-package com.ardhian.callmonitoring.dto;
+package com.ardhian.callmonitoring.dto.response;
 
 public class LoginResponse {
 

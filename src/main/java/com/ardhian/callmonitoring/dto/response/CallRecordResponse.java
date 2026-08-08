@@ -1,4 +1,4 @@
-package com.ardhian.callmonitoring.dto;
+package com.ardhian.callmonitoring.dto.response;
 
 import com.ardhian.callmonitoring.entity.CallRecord;
 

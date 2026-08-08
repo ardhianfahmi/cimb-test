@@ -1,4 +1,6 @@
-package com.ardhian.callmonitoring.dto;
+package com.ardhian.callmonitoring.dto.request;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RegisterRequest {
 
@@ -27,10 +29,12 @@ public class RegisterRequest {
         this.password = password;
     }
 
+    @JsonProperty("full_name")
     public String getFullName() {
         return fullName;
     }
 
+    @JsonProperty("full_name")
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -43,10 +47,12 @@ public class RegisterRequest {
         this.email = email;
     }
 
+    @JsonProperty("phone_number")
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    @JsonProperty("phone_number")
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }

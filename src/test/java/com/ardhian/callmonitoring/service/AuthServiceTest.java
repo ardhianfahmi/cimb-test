@@ -1,7 +1,7 @@
 package com.ardhian.callmonitoring.service;
 
-import com.ardhian.callmonitoring.dto.LoginRequest;
-import com.ardhian.callmonitoring.dto.LoginResponse;
+import com.ardhian.callmonitoring.dto.request.LoginRequest;
+import com.ardhian.callmonitoring.dto.response.LoginResponse;
 import com.ardhian.callmonitoring.entity.User;
 import com.ardhian.callmonitoring.repository.UserRepository;
 import com.ardhian.callmonitoring.security.JwtUtil;
