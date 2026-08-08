@@ -1,0 +1,22 @@
+-- sample call monitoring data (within last 3 months from Aug 2026)
+INSERT INTO call_monitoring (call_id, call_timestamp, cs_name, customer_name, sentiment_score) VALUES
+('CALL-1001', '2026-05-12 09:15:00', 'Andi Pratama', 'Budi Santoso', 85),
+('CALL-1002', '2026-05-15 10:30:00', 'Siti Rahayu', 'Dewi Lestari', 62),
+('CALL-1003', '2026-05-20 14:00:00', 'Andi Pratama', 'Rina Wijaya', 91),
+('CALL-1004', '2026-05-28 11:45:00', 'Budi Hartono', 'Agus Setiawan', 55),
+('CALL-1005', '2026-06-02 08:20:00', 'Siti Rahayu', 'Maya Kusuma', 78),
+('CALL-1006', '2026-06-08 13:10:00', 'Rina Marlina', 'Hendra Gunawan', 45),
+('CALL-1007', '2026-06-14 16:40:00', 'Andi Pratama', 'Lina Marlina', 88),
+('CALL-1008', '2026-06-18 09:55:00', 'Budi Hartono', 'Joko Widodo', 70),
+('CALL-1009', '2026-06-22 15:25:00', 'Siti Rahayu', 'Fitriani Sari', 39),
+('CALL-1010', '2026-06-25 10:05:00', 'Rina Marlina', 'Tono Sukamto', 95),
+('CALL-1011', '2026-07-01 11:30:00', 'Andi Pratama', 'Sari Indah', 67),
+('CALL-1012', '2026-07-05 14:50:00', 'Budi Hartono', 'Eko Prasetyo', 72),
+('CALL-1013', '2026-07-10 08:40:00', 'Siti Rahayu', 'Nina Kartika', 58),
+('CALL-1014', '2026-07-15 12:15:00', 'Rina Marlina', 'Dedi Kurniawan', 81),
+('CALL-1015', '2026-07-20 16:00:00', 'Andi Pratama', 'Putri Ayu', 49),
+('CALL-1016', '2026-07-25 09:30:00', 'Budi Hartono', 'Wahyu Nugroho', 90),
+('CALL-1017', '2026-07-28 13:45:00', 'Siti Rahayu', 'Ayu Permata', 64),
+('CALL-1018', '2026-08-01 10:20:00', 'Rina Marlina', 'Fajar Maulana', 76),
+('CALL-1019', '2026-08-03 15:10:00', 'Andi Pratama', 'Citra Dewi', 52),
+('CALL-1020', '2026-08-05 11:00:00', 'Budi Hartono', 'Rudi Hermawan', 83);
