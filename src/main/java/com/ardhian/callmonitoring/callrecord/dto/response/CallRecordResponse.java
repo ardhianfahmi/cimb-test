@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class CallRecordResponse {
 
     private String callId;
-    private LocalDateTime callTimestamp;
+    private LocalDateTime callTimeStamp;
     private String csName;
     private String customerName;
     private Integer sentimentScore;
@@ -38,12 +38,12 @@ public class CallRecordResponse {
 
     @JsonProperty("call_timestamp")
     public LocalDateTime getCallTimestamp() {
-        return callTimestamp;
+        return callTimeStamp;
     }
 
     @JsonProperty("call_timestamp")
-    public void setCallTimestamp(LocalDateTime callTimestamp) {
-        this.callTimestamp = callTimestamp;
+    public void setCallTimestamp(LocalDateTime callTimeStamp) {
+        this.callTimeStamp = callTimeStamp;
     }
 
     @JsonProperty("cs_name")

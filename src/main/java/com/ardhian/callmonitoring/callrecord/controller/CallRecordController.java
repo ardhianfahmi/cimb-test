@@ -42,7 +42,7 @@ public class CallRecordController {
             @RequestParam(required = false) String sentiment,
 
             // sort_by=
-            @RequestParam(value = "sort_by", required = false, defaultValue = "callTimestamp")
+            @RequestParam(value = "sort_by", required = false, defaultValue = "callTimeStamp")
             String sortBy,
 
             // sort_order=

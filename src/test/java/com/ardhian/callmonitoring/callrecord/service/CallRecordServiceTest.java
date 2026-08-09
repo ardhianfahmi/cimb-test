@@ -65,8 +65,8 @@ class CallRecordServiceTest {
         assertEquals(0, pageable.getPageNumber());
         assertEquals(5, pageable.getPageSize());
         // use "callTimeStamp" after you fix the service bug
-        assertEquals("callTimestamp", pageable.getSort().iterator().next().getProperty());
-        assertTrue(pageable.getSort().getOrderFor("callTimestamp").isDescending());
+        assertEquals("callTimeStamp", pageable.getSort().iterator().next().getProperty());
+        assertTrue(pageable.getSort().getOrderFor("callTimeStamp").isDescending());
     }
 
     @Test

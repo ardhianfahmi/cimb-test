@@ -20,7 +20,7 @@ import java.util.Set;
 public class CallRecordService {
 
     private static final Set<String> ALLOWED_SORT =
-            Set.of("callTimestamp", "sentimentScore", "csName", "customerName", "callId");
+            Set.of("callTimeStamp", "sentimentScore", "csName", "customerName", "callId");
 
     private final CallRecordRepository repository;
 
@@ -54,7 +54,7 @@ public class CallRecordService {
 
         String safeSortBy = (sortBy != null && ALLOWED_SORT.contains(sortBy))
                 ? sortBy
-                : "callTimestamp";
+                : "callTimeStamp";
 
         Sort.Direction direction = "asc".equalsIgnoreCase(sortOrder)
                 ? Sort.Direction.ASC
