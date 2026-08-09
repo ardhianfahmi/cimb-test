@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "ce8c4031-c7ad-46c3-8089-e4a532a63795",
+    "name": "cimb-test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41759172",
+    "_collection_link": "https://go.postman.co/collection/41759172-ce8c4031-c7ad-46c3-8089-e4a532a63795?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"supervisor\",\r\n    \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"username\": \"string\",\r\n    \"password\": \"string\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"status\": 200,\r\n    \"message\": \"Login Success\",\r\n    \"data\": {\r\n        \"token\": \"string\",\r\n        \"username\": \"string\",\r\n        \"fullName\": \"string\",\r\n        \"role\": \"string\"\r\n    }\r\n}"
+            },
+            {
+              "name": "Login Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"username\": \"string\",\r\n    \"password\": \"string\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"status\": 401,\r\n    \"message\": \"Invalid username or password\",\r\n    \"data\": null\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Register a New User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"ardhianfahmi\",\r\n    \"password\": \"SpeedPeople98!\",\r\n    \"full_name\": \"Ardhian Fahmi\",\r\n    \"email\": \"ardhianexe@gmail.com\",\r\n    \"phone_number\": \"082119192508\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Register Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": []
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"status\": 200,\r\n    \"message\": \"Register success. Please login with your account.\",\r\n    \"data\": {\r\n        \"username\": \"ardhianfahmi\",\r\n        \"full_name\": \"Ardhian Fahmi\",\r\n        \"email\": \"ardhianexe@gmail.com\",\r\n        \"phone_number\": \"082119192508\",\r\n        \"role\": \"SUPERVISOR\"\r\n    }\r\n}"
+            },
+            {
+              "name": "Validation",
+              "originalRequest": {
+                "method": "GET",
+                "header": []
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"status\": 400,\r\n    \"message\": \"Username already exists\",\r\n    \"data\": null\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "call-records",
+      "item": [
+        {
+          "name": "Get List Call Record Monitoring",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": [
+            {
+              "name": "Get List Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": []
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"status\": 200,\r\n    \"message\": \"Call records fetched successfully\",\r\n    \"data\": {\r\n        \"items\": [\r\n            {\r\n                \"call_id\": \"CALL-1013\",\r\n                \"call_timestamp\": \"2026-08-09T09:18:21\",\r\n                \"cs_name\": \"Dewi Anggraini\",\r\n                \"customer_name\": \"Citra Dewi\",\r\n                \"sentiment_score\": 41\r\n            },\r\n            {\r\n                \"call_id\": \"CALL-1042\",\r\n                \"call_timestamp\": \"2026-08-06T18:56:38\",\r\n                \"cs_name\": \"Siti Rahayu\",\r\n                \"customer_name\": \"Wulan Sari\",\r\n                \"sentiment_score\": 64\r\n            },\r\n            {\r\n                \"call_id\": \"CALL-1055\",\r\n                \"call_timestamp\": \"2026-08-05T03:12:31\",\r\n                \"cs_name\": \"Hendra Wijaya\",\r\n                \"customer_name\": \"Lina Marlina\",\r\n                \"sentiment_score\": 30\r\n            },\r\n            {\r\n                \"call_id\": \"CALL-1085\",\r\n                \"call_timestamp\": \"2026-08-05T01:21:30\",\r\n                \"cs_name\": \"Andi Pratama\",\r\n                \"customer_name\": \"Bayu Aji\",\r\n                \"sentiment_score\": 79\r\n            },\r\n            {\r\n                \"call_id\": \"CALL-1040\",\r\n                \"call_timestamp\": \"2026-08-04T23:50:35\",\r\n                \"cs_name\": \"Agus Setiawan\",\r\n                \"customer_name\": \"Joko Widodo\",\r\n                \"sentiment_score\": 26\r\n            }\r\n        ],\r\n        \"page\": 0,\r\n        \"size\": 5,\r\n        \"total_items\": 100,\r\n        \"total_pages\": 20\r\n    }\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get List Users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdXBlcnZpc29yIiwiaWF0IjoxNzg2MjYyMjY5LCJleHAiOjE3ODYzNDg2Njl9.geC5J2Wpebre2YLPNgvWaxIk3Gm6E2e1ZpNBKJrtLN8QtcHQP8THDn0ZRfjMZZ2P",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "/api/users",
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get List Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "/api/users",
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"status\": 200,\r\n    \"message\": \"Users fetched successfully\",\r\n    \"data\": {\r\n        \"items\": [\r\n            {\r\n                \"email\": \"supervisor@cimb.local\",\r\n                \"full_name\": \"Supervisor CIMB\",\r\n                \"id\": 1,\r\n                \"phone_number\": \"081234567890\",\r\n                \"role\": \"SUPERVISOR\",\r\n                \"username\": \"supervisor\"\r\n            },\r\n            {\r\n                \"email\": \"ardhianexe@gmail.com\",\r\n                \"full_name\": \"Ardhian Fahmi\",\r\n                \"id\": 2,\r\n                \"phone_number\": \"082119192508\",\r\n                \"role\": \"SUPERVISOR\",\r\n                \"username\": \"ardhianfahmi\"\r\n            }\r\n        ]\r\n    }\r\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
