@@ -1,3 +1,5 @@
+import { defineStore } from 'pinia';
+
 export const useCallMonitoringStore = defineStore('callMonitoring', {
     state: () => ({
         table: {
@@ -8,7 +10,7 @@ export const useCallMonitoringStore = defineStore('callMonitoring', {
             totalPages: 0,
             isLoading: false,
         },
-        payload: {
+        payloads: {
             search: '',
             sentiment: '', //below70 | above70
             page: 0,

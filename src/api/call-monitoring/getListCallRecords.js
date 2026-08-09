@@ -1,6 +1,6 @@
 import api from '@/lib/axios';
 
-export async function getCallRecords(params = {}) {
+export async function getListCallRecords(params = {}) {
     const { search, sentiment, page = 0, size = 10, sortBy, sortOrder } = params;
     const query = Object.fromEntries(
         Object.entries({
