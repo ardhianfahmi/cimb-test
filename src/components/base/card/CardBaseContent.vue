@@ -47,7 +47,6 @@
             </div>
 
             <template v-if="$slots.default">
-                <div class="divider my-0 hidden lg:flex"></div>
                 <slot />
             </template>
         </div>
