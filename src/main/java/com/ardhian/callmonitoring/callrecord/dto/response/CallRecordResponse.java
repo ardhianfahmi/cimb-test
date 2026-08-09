@@ -1,6 +1,7 @@
 package com.ardhian.callmonitoring.callrecord.dto.response;
 
 import com.ardhian.callmonitoring.callrecord.entity.CallRecord;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 
@@ -25,18 +26,53 @@ public class CallRecordResponse {
         return response;
     }
 
-    public String getCallId() { return callId; }
-    public void setCallId(String callId) { this.callId = callId; }
+    @JsonProperty("call_id")
+    public String getCallId() {
+        return callId;
+    }
 
-    public LocalDateTime getCallTimestamp() { return callTimestamp; }
-    public void setCallTimestamp(LocalDateTime callTimestamp) { this.callTimestamp = callTimestamp; }
+    @JsonProperty("call_id")
+    public void setCallId(String callId) {
+        this.callId = callId;
+    }
 
-    public String getCsName() { return csName; }
-    public void setCsName(String csName) { this.csName = csName; }
+    @JsonProperty("call_timestamp")
+    public LocalDateTime getCallTimestamp() {
+        return callTimestamp;
+    }
 
-    public String getCustomerName() { return customerName; }
-    public void setCustomerName(String customerName) { this.customerName = customerName; }
+    @JsonProperty("call_timestamp")
+    public void setCallTimestamp(LocalDateTime callTimestamp) {
+        this.callTimestamp = callTimestamp;
+    }
 
-    public Integer getSentimentScore() { return sentimentScore; }
-    public void setSentimentScore(Integer sentimentScore) { this.sentimentScore = sentimentScore; }
+    @JsonProperty("cs_name")
+    public String getCsName() {
+        return csName;
+    }
+
+    @JsonProperty("cs_name")
+    public void setCsName(String csName) {
+        this.csName = csName;
+    }
+
+    @JsonProperty("customer_name")
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    @JsonProperty("customer_name")
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    @JsonProperty("sentiment_score")
+    public Integer getSentimentScore() {
+        return sentimentScore;
+    }
+
+    @JsonProperty("sentiment_score")
+    public void setSentimentScore(Integer sentimentScore) {
+        this.sentimentScore = sentimentScore;
+    }
 }
