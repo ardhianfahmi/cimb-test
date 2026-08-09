@@ -7,12 +7,12 @@
             class="drawer-toggle"
         />
 
-        <div class="drawer-content flex flex-col min-h-screen bg-base-200">
-            <Navbar :title="title">
+        <div class="drawer-content flex flex-col min-h-screen">
+            <DashboardNavbar :title="title">
                 <template #actions>
                     <slot name="navbar-actions" />
                 </template>
-            </Navbar>
+            </DashboardNavbar>
 
             <main class="flex-1 p-4 lg:p-6 overflow-x-hidden">
                 <slot />
@@ -26,19 +26,21 @@
                 class="drawer-overlay"
             ></label>
 
-            <Sidebar
-                :nav-items="navItems"
-                :brand="brand"
-                @navigate="isDrawerOpen = false"
-            />
+            <div class="p-2 h-full">
+                <DashboardSidebar
+                    :nav-items="navItems"
+                    :brand="brand"
+                    @navigate="isDrawerOpen = false"
+                />
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
     import { ref } from 'vue';
-    import Navbar from './Navbar.vue';
-    import Sidebar from './Sidebar.vue';
+    import DashboardNavbar from './DashboardNavbar.vue';
+    import DashboardSidebar from './DashboardSidebar.vue';
 
     defineProps({
         title: {

@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Auth from '../views/auth/Auth.vue';
 import Login from '../views/auth/Login.vue';
 import Register from '../views/auth/Register.vue';
+import Dashboard from '../views/dashboard/Dashboard.vue';
+import MonitoringList from '../views/dashboard/call-monitoring/MonitoringList.vue';
+import UserList from '../views/dashboard/users/UserList.vue';
 import { useAuthStore } from '../stores/auth';
 
 const routes = [
@@ -15,10 +18,24 @@ const routes = [
         ],
     },
     {
-        path: '/monitoring',
-        name: 'monitoring',
-        component: MonitoringView,
+        path: '/dashboard',
+        component: Dashboard,
         meta: { requiresAuth: true },
+        children: [
+            { path: '', redirect: { name: 'call-monitoring' } },
+            {
+                path: 'call-monitoring',
+                name: 'call-monitoring',
+                component: MonitoringList,
+                meta: { title: 'Call Monitoring' },
+            },
+            {
+                path: 'users',
+                name: 'users',
+                component: UserList,
+                meta: { title: 'Users' },
+            },
+        ],
     },
 ];
 
@@ -35,7 +52,7 @@ router.beforeEach((to) => {
     }
 
     if (to.meta.guestOnly && auth.isLoggedIn) {
-        return { name: 'monitoring' };
+        return { name: 'call-monitoring' };
     }
 
     return true;

@@ -1,0 +1,1 @@
+<template>Monitoring List</template>

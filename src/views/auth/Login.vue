@@ -131,7 +131,7 @@
 
         try {
             await auth.login();
-            router.push('/monitoring');
+            router.push('/dashboard/call-monitoring');
         } catch (error) {
             errorMessage.value = error.message || 'Login failed';
         } finally {
