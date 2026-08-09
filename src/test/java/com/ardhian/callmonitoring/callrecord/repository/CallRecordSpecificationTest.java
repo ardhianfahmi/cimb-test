@@ -39,6 +39,23 @@ class CallRecordSpecificationTest {
     }
 
     @Test
+    void search_multiToken_matchesAnyToken() {
+        List<CallRecord> result = repository.findAll(
+                CallRecordSpecification.search("call hehe"));
+
+        assertEquals(3, result.size());
+    }
+
+    @Test
+    void search_numeric_matchesSentimentScore() {
+        List<CallRecord> result = repository.findAll(
+                CallRecordSpecification.search("40"));
+
+        assertEquals(1, result.size());
+        assertEquals("CALL-002", result.get(0).getCallId());
+    }
+
+    @Test
     void search_blank_returnsAll() {
         List<CallRecord> result = repository.findAll(
                 CallRecordSpecification.search("  "));
