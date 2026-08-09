@@ -83,17 +83,15 @@
             </template>
         </FormFieldset>
 
-        <button
+        <Button
             type="submit"
-            class="btn btn-primary w-full rounded-xl mt-2"
-            :disabled="auth.loginForm.isLoading"
+            variant="primary"
+            block
+            class="rounded-xl mt-2"
+            :loading="auth.loginForm.isLoading"
         >
-            <span
-                v-if="auth.loginForm.isLoading"
-                class="loading loading-spinner loading-sm"
-            ></span>
             {{ auth.loginForm.isLoading ? 'Signing in...' : 'Sign in to your account' }}
-        </button>
+        </Button>
 
         <Typography
             tag="p"
@@ -119,6 +117,7 @@
     import FormFieldset from '@/components/base/form/FormFieldset.vue';
     import Typography from '@/components/base/typography/Typography.vue';
     import { EyeIcon, EyeSlashIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
+    import Button from '@/components/base/button/Button.vue';
 
     const router = useRouter();
     const auth = useAuthStore();

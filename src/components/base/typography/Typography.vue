@@ -15,7 +15,7 @@
     const props = defineProps({
         tag: { type: String, default: 'p' },
 
-        variant: { type: String, default: '' }, // text-sm, text-lg, prose, etc
+        variant: { type: String, default: '' }, // text-sm, text-lg, prose
         weight: { type: [String, Number], default: '' }, // font-bold | 500
         color: { type: String, default: '' }, // text-primary OR raw color
         align: { type: String, default: '' }, // left | center | right | justify

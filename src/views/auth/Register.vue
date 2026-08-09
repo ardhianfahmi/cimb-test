@@ -31,7 +31,7 @@
     </div>
 
     <form
-        class="flex flex-col gap-4"
+        class="flex flex-col gap-2"
         novalidate
         @submit.prevent="onSubmit"
     >
@@ -133,17 +133,15 @@
             </li>
         </ul>
 
-        <button
+        <Button
             type="submit"
-            class="btn btn-primary w-full rounded-xl mt-2"
-            :disabled="isLoading"
+            variant="primary"
+            block
+            class="rounded-xl mt-2"
+            :loading="auth.loginForm.isLoading"
         >
-            <span
-                v-if="isLoading"
-                class="loading loading-spinner loading-sm"
-            ></span>
-            {{ isLoading ? 'Creating account...' : 'Create account' }}
-        </button>
+            {{ auth.loginForm.isLoading ? 'Creating account...' : 'Create an account' }}
+        </Button>
 
         <Typography
             tag="p"
@@ -169,6 +167,7 @@
     import FormFieldset from '@/components/base/form/FormFieldset.vue';
     import Typography from '@/components/base/typography/Typography.vue';
     import { EyeIcon, EyeSlashIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
+    import Button from '@/components/base/button/Button.vue';
 
     const router = useRouter();
     const auth = useAuthStore();
