@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Auth from '../views/auth/Auth.vue';
 import Login from '../views/auth/Login.vue';
 import Register from '../views/auth/Register.vue';
-import MonitoringView from '../views/MonitoringView.vue';
 import { useAuthStore } from '../stores/auth';
 
 const routes = [
