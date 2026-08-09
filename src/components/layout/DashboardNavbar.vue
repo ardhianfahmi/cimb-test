@@ -1,6 +1,6 @@
 <template>
     <header
-        class="navbar bg-base-100 border border-base-200 h-16 px-4 lg:px-6 shrink-0 sticky top-0 z-30 rounded-xl shadow-sm"
+        class="navbar bg-base-100 border border-base-200 h-16 px-4 lg:px-6 shrink-0 sticky top-0 z-30 rounded-2xl shadow-sm"
     >
         <div class="flex-1 flex items-center gap-3">
             <label
@@ -102,9 +102,7 @@
         return name.charAt(0).toUpperCase();
     });
 
-    const themeToggleLabel = computed(() =>
-        themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode',
-    );
+    const themeToggleLabel = computed(() => (themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode'));
 
     function handleLogout() {
         auth.logout();

@@ -1,5 +1,5 @@
 <template>
-    <aside class="min-h-full w-72 bg-base-100 flex flex-col border border-base-200 rounded-2xl shadow-md p-2">
+    <aside class="min-h-full w-72 bg-base-100 flex flex-col border border-r border-base-300 shadow-md p-3">
         <div class="h-16 flex items-center gap-3 px-5 shrink-0 bg-primary rounded-xl">
             <img
                 v-if="brand.logo"
