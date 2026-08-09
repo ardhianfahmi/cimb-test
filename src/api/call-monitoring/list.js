@@ -1,19 +1,25 @@
-import api from '@/lib/axios'
+import api from '@/lib/axios';
 
-export function getCallRecords(params) {
-    return new Promise((resolve, reject) => {
-        api
-            .get('/api/call-monitoring', { params })
-            .then((response) => {
-                if (response.status === 200) {
-                    resolve(response.data)
-                } else {
-                    reject({ transport: true, details: response })
-                }
-            })
-            .catch((err) => {
-                console.error('getCallRecords error:', err)
-                reject({ transport: true, details: err })
-            })
-    })
+export async function getCallRecords(params = {}) {
+    const { search, sentiment, page = 0, size = 10, sortBy, sortOrder } = params;
+    const query = Object.fromEntries(
+        Object.entries({
+            search,
+            sentiment,
+            page,
+            size,
+            sort_by: sortBy,
+            sort_order: sortOrder,
+        }).filter(([, value]) => value !== undefined && value !== null && value !== '')
+    );
+
+    try {
+        const response = await api.get('/api/call-monitoring', { params: query });
+        return response.data;
+    } catch (error) {
+        const message = error?.response?.data?.message || error?.message || 'Failed to fetch call records';
+
+        console.error('getCallRecords error:', error);
+        throw new Error(message);
+    }
 }
