@@ -1,6 +1,6 @@
 package com.ardhian.callmonitoring.callrecord.service;
 
-import com.ardhian.callmonitoring.callrecord.dto.response.CallRecordResponse;
+import com.ardhian.callmonitoring.callrecord.dto.response.CallRecordPageResponse;
 import com.ardhian.callmonitoring.callrecord.entity.CallRecord;
 import com.ardhian.callmonitoring.callrecord.repository.CallRecordRepository;
 import org.junit.jupiter.api.Test;
@@ -43,12 +43,15 @@ class CallRecordServiceTest {
         when(repository.findAll(any(Specification.class), any(Pageable.class)))
                 .thenReturn(new PageImpl<>(List.of(entity)));
 
-        Page<CallRecordResponse> result = service.getCallRecords(
+        CallRecordPageResponse result = service.getCallRecords(
                 null, null, null, null, null, null, 0, 5);
 
-        assertEquals(1, result.getContent().size());
-        assertEquals("CALL-001", result.getContent().get(0).getCallId());
-        assertEquals(80, result.getContent().get(0).getSentimentScore());
+        assertEquals(1, result.getItems().size());
+        assertEquals("CALL-001", result.getItems().get(0).getCallId());
+        assertEquals(80, result.getItems().get(0).getSentimentScore());
+        assertEquals(0, result.getPage());
+        assertEquals(1, result.getTotalItems());
+        assertEquals(1, result.getTotalPages());
     }
 
     @Test
@@ -64,7 +67,6 @@ class CallRecordServiceTest {
         Pageable pageable = pageableCaptor.getValue();
         assertEquals(0, pageable.getPageNumber());
         assertEquals(5, pageable.getPageSize());
-        // use "callTimeStamp" after you fix the service bug
         assertEquals("callTimeStamp", pageable.getSort().iterator().next().getProperty());
         assertTrue(pageable.getSort().getOrderFor("callTimeStamp").isDescending());
     }

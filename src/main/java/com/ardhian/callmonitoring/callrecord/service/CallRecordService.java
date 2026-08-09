@@ -1,5 +1,6 @@
 package com.ardhian.callmonitoring.callrecord.service;
 
+import com.ardhian.callmonitoring.callrecord.dto.response.CallRecordPageResponse;
 import com.ardhian.callmonitoring.callrecord.dto.response.CallRecordResponse;
 import com.ardhian.callmonitoring.callrecord.entity.CallRecord;
 import com.ardhian.callmonitoring.callrecord.repository.CallRecordRepository;
@@ -14,10 +15,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Set;
 
 @Service
 public class CallRecordService {
+
+    private static final Map<String, String> SORT_FIELD_MAP = Map.of(
+            "call_timestamp", "callTimeStamp",
+            "calltimestamp", "callTimeStamp",
+            "sentiment_score", "sentimentScore",
+            "sentimentscore", "sentimentScore",
+            "cs_name", "csName",
+            "csname", "csName",
+            "customer_name", "customerName",
+            "customername", "customerName",
+            "call_id", "callId",
+            "callid", "callId"
+    );
 
     private static final Set<String> ALLOWED_SORT =
             Set.of("callTimeStamp", "sentimentScore", "csName", "customerName", "callId");
@@ -28,7 +43,7 @@ public class CallRecordService {
         this.repository = repository;
     }
 
-    public Page<CallRecordResponse> getCallRecords(
+    public CallRecordPageResponse getCallRecords(
             String search,
             LocalDateTime startDate,
             LocalDateTime endDate,
@@ -52,9 +67,7 @@ public class CallRecordService {
             }
         }
 
-        String safeSortBy = (sortBy != null && ALLOWED_SORT.contains(sortBy))
-                ? sortBy
-                : "callTimeStamp";
+        String safeSortBy = resolveSortBy(sortBy);
 
         Sort.Direction direction = "asc".equalsIgnoreCase(sortOrder)
                 ? Sort.Direction.ASC
@@ -65,8 +78,21 @@ public class CallRecordService {
 
         Pageable pageable = PageRequest.of(safePage, safeSize, Sort.by(direction, safeSortBy));
 
-        return repository.findAll(spec, pageable)
+        Page<CallRecordResponse> result = repository.findAll(spec, pageable)
                 .map(CallRecordResponse::fromEntity);
+
+        return CallRecordPageResponse.from(result);
+    }
+
+    private String resolveSortBy(String sortBy) {
+        if (sortBy == null || sortBy.isBlank()) {
+            return "callTimeStamp";
+        }
+        if (ALLOWED_SORT.contains(sortBy)) {
+            return sortBy;
+        }
+        String mapped = SORT_FIELD_MAP.get(sortBy.toLowerCase());
+        return mapped != null ? mapped : "callTimeStamp";
     }
 
     private void validatePeriodLimit(LocalDateTime startDate, LocalDateTime endDate) {
