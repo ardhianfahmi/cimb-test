@@ -36,7 +36,7 @@
         @submit.prevent="onSubmit"
     >
         <FormFieldset
-            v-model="auth.form.fullName"
+            v-model="auth.registerForm.fullName"
             label="Full Name"
             type="text"
             placeholder="Your full name"
@@ -47,7 +47,7 @@
         />
 
         <FormFieldset
-            v-model="auth.form.username"
+            v-model="auth.registerForm.username"
             label="Username"
             type="text"
             placeholder="Choose a username"
@@ -58,7 +58,7 @@
         />
 
         <FormFieldset
-            v-model="auth.form.email"
+            v-model="auth.registerForm.email"
             label="Email"
             type="email"
             placeholder="you@example.com"
@@ -69,7 +69,7 @@
         />
 
         <FormFieldset
-            v-model="auth.form.phoneNumber"
+            v-model="auth.registerForm.phoneNumber"
             label="Phone Number"
             type="tel"
             placeholder="08xxxxxxxxxx"
@@ -80,7 +80,7 @@
         />
 
         <FormFieldset
-            v-model="auth.form.password"
+            v-model="auth.registerForm.password"
             label="Password"
             type="password"
             placeholder="••••••••"
@@ -109,7 +109,7 @@
         </FormFieldset>
 
         <FormFieldset
-            v-model="auth.form.confirmPassword"
+            v-model="confirmPassword"
             label="Confirm Password"
             type="password"
             placeholder="••••••••"
@@ -136,13 +136,13 @@
         <button
             type="submit"
             class="btn btn-primary w-full rounded-xl mt-2"
-            :disabled="auth.form.isLoading"
+            :disabled="isLoading"
         >
             <span
-                v-if="auth.form.isLoading"
+                v-if="isLoading"
                 class="loading loading-spinner loading-sm"
             ></span>
-            {{ auth.form.isLoading ? 'Creating account...' : 'Create account' }}
+            {{ isLoading ? 'Creating account...' : 'Create account' }}
         </button>
 
         <Typography
@@ -175,6 +175,8 @@
 
     const errorMessage = ref('');
     const showPassword = ref(false);
+    const isLoading = ref(false);
+    const confirmPassword = ref('');
 
     const fieldErrors = reactive({
         fullName: '',
@@ -190,7 +192,7 @@
     const USERNAME_REGEX = /^[a-zA-Z0-9_]{4,20}$/;
 
     const passwordHints = computed(() => {
-        const pwd = auth.form.password || '';
+        const pwd = auth.registerForm.password || '';
         return [
             { label: 'At least 8 characters', valid: pwd.length >= 8 },
             { label: 'One uppercase letter', valid: /[A-Z]/.test(pwd) },
@@ -200,7 +202,7 @@
     });
 
     function validateField(field) {
-        const form = auth.form;
+        const form = auth.registerForm;
 
         switch (field) {
             case 'fullName':
@@ -241,11 +243,11 @@
                 fieldErrors.password = passwordHints.value.every((h) => h.valid)
                     ? ''
                     : 'Password does not meet requirements';
-                if (form.confirmPassword) validateField('confirmPassword');
+                if (confirmPassword.value) validateField('confirmPassword');
                 break;
 
             case 'confirmPassword':
-                fieldErrors.confirmPassword = form.confirmPassword === form.password ? '' : 'Passwords do not match';
+                fieldErrors.confirmPassword = confirmPassword.value === form.password ? '' : 'Passwords do not match';
                 break;
         }
     }
@@ -255,6 +257,7 @@
         return Object.values(fieldErrors).every((err) => !err);
     }
 
+    // SECTION SUBMIT
     async function onSubmit() {
         errorMessage.value = '';
 
@@ -263,15 +266,16 @@
             return;
         }
 
-        auth.form.isLoading = true;
+        isLoading.value = true;
 
         try {
             await auth.register();
+            confirmPassword.value = '';
             router.push({ name: 'login' });
         } catch (error) {
             errorMessage.value = error.message || 'Registration failed';
         } finally {
-            auth.form.isLoading = false;
+            isLoading.value = false;
         }
     }
 </script>

@@ -48,7 +48,7 @@
         @submit.prevent="onSubmit"
     >
         <FormFieldset
-            v-model="auth.form.username"
+            v-model="auth.loginForm.username"
             label="Username"
             type="text"
             placeholder="Input your username"
@@ -57,7 +57,7 @@
         />
 
         <FormFieldset
-            v-model="auth.form.password"
+            v-model="auth.loginForm.password"
             label="Password"
             type="password"
             placeholder="••••••••"
@@ -86,13 +86,13 @@
         <button
             type="submit"
             class="btn btn-primary w-full rounded-xl mt-2"
-            :disabled="auth.form.isLoading"
+            :disabled="auth.loginForm.isLoading"
         >
             <span
-                v-if="auth.form.isLoading"
+                v-if="auth.loginForm.isLoading"
                 class="loading loading-spinner loading-sm"
             ></span>
-            {{ auth.form.isLoading ? 'Signing in...' : 'Sign in to your account' }}
+            {{ auth.loginForm.isLoading ? 'Signing in...' : 'Sign in to your account' }}
         </button>
 
         <Typography
@@ -128,7 +128,7 @@
 
     async function onSubmit() {
         errorMessage.value = '';
-        auth.form.isLoading = true;
+        auth.loginForm.isLoading = true;
 
         try {
             await auth.login();
@@ -136,7 +136,7 @@
         } catch (error) {
             errorMessage.value = error.message || 'Login failed';
         } finally {
-            auth.form.isLoading = false;
+            auth.loginForm.isLoading = false;
         }
     }
 </script>
