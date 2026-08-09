@@ -1,5 +1,7 @@
 <template>
-    <header class="navbar bg-base-100 border-b border-base-300 h-16 px-4 lg:px-6 shrink-0 sticky top-0 z-30">
+    <header
+        class="navbar bg-base-100 border border-base-200 h-16 px-4 lg:px-6 shrink-0 sticky top-0 z-30 rounded-xl shadow-sm"
+    >
         <div class="flex-1 flex items-center gap-3">
             <label
                 for="dashboard-drawer"
@@ -22,6 +24,20 @@
 
         <div class="flex-none flex items-center gap-2">
             <slot name="actions" />
+
+            <IconButton
+                :aria-label="themeToggleLabel"
+                @click="themeStore.toggleTheme()"
+            >
+                <SunIcon
+                    v-if="themeStore.isDark"
+                    class="w-5 h-5"
+                />
+                <MoonIcon
+                    v-else
+                    class="w-5 h-5"
+                />
+            </IconButton>
 
             <div class="dropdown dropdown-end">
                 <div
@@ -65,8 +81,10 @@
     import { computed } from 'vue';
     import { useRouter } from 'vue-router';
     import { useAuthStore } from '@/stores/auth';
+    import { useThemeStore } from '@/stores/theme';
     import Typography from '@/components/base/typography/Typography.vue';
-    import { Bars3Icon } from '@heroicons/vue/24/outline';
+    import IconButton from '@/components/base/button/IconButton.vue';
+    import { Bars3Icon, MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
 
     defineProps({
         title: {
@@ -77,11 +95,16 @@
 
     const router = useRouter();
     const auth = useAuthStore();
+    const themeStore = useThemeStore();
 
     const userInitial = computed(() => {
         const name = auth.userData.fullName || auth.userData.userName || '?';
         return name.charAt(0).toUpperCase();
     });
+
+    const themeToggleLabel = computed(() =>
+        themeStore.isDark ? 'Switch to light mode' : 'Switch to dark mode',
+    );
 
     function handleLogout() {
         auth.logout();

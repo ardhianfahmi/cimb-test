@@ -8,11 +8,13 @@
         />
 
         <div class="drawer-content flex flex-col min-h-screen">
-            <DashboardNavbar :title="title">
-                <template #actions>
-                    <slot name="navbar-actions" />
-                </template>
-            </DashboardNavbar>
+            <div class="p-2 w-full">
+                <DashboardNavbar :title="title">
+                    <template #actions>
+                        <slot name="navbar-actions" />
+                    </template>
+                </DashboardNavbar>
+            </div>
 
             <main class="flex-1 p-4 lg:p-6 overflow-x-hidden">
                 <slot />
